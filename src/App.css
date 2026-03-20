@@ -1,0 +1,175 @@
+/* THEME DEFINITIONS & FALLBACK */
+:root, .light-theme {
+  --primary: #2563eb;
+  --bg-base: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #f1f5f9 100%);
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --input-bg: rgba(255, 255, 255, 0.7);
+  --border: #e2e8f0;
+  --status-on-bg: #dcfce7;
+  --status-on-text: #166534;
+  --status-off-bg: #fee2e2;
+  --status-off-text: #991b1b;
+}
+
+.dark-theme {
+  --primary: #3b82f6;
+  --bg-base: #0f172a;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --input-bg: rgba(30, 41, 59, 0.5);
+  --border: #334155;
+  --status-on-bg: rgba(16, 185, 129, 0.2);
+  --status-on-text: #34d399;
+  --status-off-bg: rgba(239, 68, 68, 0.2);
+  --status-off-text: #f87171;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  transition: color 0.3s ease;
+  background: var(--bg-gradient);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  width: 100%; 
+  max-width: 900px; 
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  gap: 3.5rem;
+}
+
+h1 { 
+  font-size: 3.5rem; 
+  font-weight: 800; 
+  letter-spacing: -2px; 
+  text-align: center;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: var(--input-bg);
+  backdrop-filter: blur(10px);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 10;
+}
+
+/* FIX: Removed background and border for a seamless look */
+.controls {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+
+.refresh-btn {
+  background: var(--primary);
+  color: white !important;
+  border: none;
+  padding: 1.1rem 2.8rem;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* ADD THESE TWO LINES */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* This creates the space between the icon and text */
+}
+
+.refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.5);
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--input-bg);
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(5px);
+}
+
+.filter-section {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.search-input, select {
+  width: 100%; 
+  padding: 1.2rem 1.5rem; 
+  border-radius: 16px;
+  background: var(--input-bg) !important;
+  border: 1px solid var(--border);
+  color: var(--text-main); 
+  font-size: 1.1rem;
+  backdrop-filter: blur(8px);
+}
+
+.route-detail {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  padding: 2rem 0;
+  animation: slideUp 0.8s ease;
+}
+
+.time { 
+  font-size: 6.5rem; 
+  font-weight: 900; 
+  letter-spacing: -5px;
+  line-height: 0.9;
+  margin: 1.5rem 0;
+}
+
+.status {
+  padding: 0.6rem 1.5rem; 
+  border-radius: 10px; 
+  font-weight: 800;
+  text-transform: uppercase; 
+  font-size: 0.9rem;
+}
+
+.status.on-time { background: var(--status-on-bg); color: var(--status-on-text); }
+.status.delayed { background: var(--status-off-bg); color: var(--status-off-text); }
